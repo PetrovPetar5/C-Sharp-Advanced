@@ -12,7 +12,9 @@
         {
             var charactersToReplace = new HashSet<char> { '-', ',', '.', '!', '?' };
             var replacement = '@';
-            var evenLinesInput = new List<Stack<string>>();
+
+
+            using (var outputWriter = new StreamWriter($@"{Directory.GetCurrentDirectory()}\Output.txt", false))
             using (var inputReader = new StreamReader($@"{Directory.GetCurrentDirectory()}\text.txt"))
             {
                 var counter = 0;
@@ -20,7 +22,6 @@
                 {
                     if (counter % 2 == 0)
                     {
-
                         var curLine = new StringBuilder(inputReader.ReadLine());
                         for (int i = 0; i < curLine.Length; i++)
                         {
@@ -30,8 +31,7 @@
                             }
                         }
 
-                        evenLinesInput.Add(new Stack<string>(curLine.ToString().Split().ToArray()));
-
+                        outputWriter.WriteLine(String.Join(" ", curLine.ToString().Split().Reverse().ToArray()));
                     }
                     else
                     {
@@ -40,18 +40,6 @@
 
                     counter++;
                 }
-            }
-
-            using (var outputWriter = new StreamWriter($@"{Directory.GetCurrentDirectory()}\Output.txt", false))
-            {
-                var sb = new StringBuilder();
-                foreach (var stackWords in evenLinesInput)
-                {
-
-                    sb.AppendLine(String.Join(" ", stackWords));
-                }
-
-                outputWriter.Write(sb.ToString().TrimEnd());
             }
         }
     }

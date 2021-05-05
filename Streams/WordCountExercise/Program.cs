@@ -50,9 +50,9 @@
                 }
             }
 
-            var firstFile = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\actualResult.txt");
-            var secondFile = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\expectedResult.txt");
-            var equality = File.Equals(firstFile, secondFile);
+            var firstFile = File.ReadAllBytes($@"{Directory.GetCurrentDirectory()}\actualResult.txt");
+            var secondFile = File.ReadAllBytes($@"{Directory.GetCurrentDirectory()}\expectedResult.txt");
+            var areEqual = File.Equals(firstFile, secondFile);
         }
     }
 }
