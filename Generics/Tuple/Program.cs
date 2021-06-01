@@ -1,34 +1,75 @@
-﻿using System;
-using System.Linq;
-
-namespace Tuple
+﻿namespace Tuple
 {
-    public class Program
+    using System;
+    using System.Linq;
+    using System.Text;
+
+    class Program
     {
         static void Main(string[] args)
         {
-            var nameAddress = Console.ReadLine()
-                .Split().ToArray();
-            var fullName = $"{nameAddress[0]} {nameAddress[1]}";
-            var address = nameAddress[2];
+            var userInput = ReturnUserInputAsArray();
+            var nameAddress = ReturnsFullnameAndAddress(userInput);
 
-            var beerInfo = Console.ReadLine()
-                .Split().ToArray();
-            var name = beerInfo[0];
-            var beerAmount = int.Parse(beerInfo[1]);
+            userInput = ReturnUserInputAsArray();
+            var nameBeerDrunk = ReturnsFirstNameLittersBeer(userInput);
 
-            var numbersInfo = Console.ReadLine()
-               .Split().ToArray();
-            var someIntNum = int.Parse(numbersInfo[0]);
-            var someDoubleNum = double.Parse(numbersInfo[1]);
+            userInput = ReturnUserInputAsArray();
+            var intDoubleInput = ReturnsIntDoubleData(userInput);
 
-            var nameAndAddress = new Tuplee<string, string>(fullName, address);
-            var beerLitersDrank = new Tuplee<string, int>(name, beerAmount);
-            var regularIntAndDoubleNumbers = new Tuplee<int, double>(someIntNum, someDoubleNum);
+            var sb = new StringBuilder();
+            AddsLineToString(sb, nameAddress);
+            AddsLineToString(sb, nameBeerDrunk);
+            AddsLineToString(sb, intDoubleInput);
 
-            Console.WriteLine(nameAndAddress);
-            Console.WriteLine(beerLitersDrank);
-            Console.WriteLine(regularIntAndDoubleNumbers);
+            Console.WriteLine(sb.ToString().TrimEnd());
+        }
+
+        private static string[] ReturnUserInputAsArray()
+        {
+            var userInput = Console.ReadLine()
+                                              .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                                              .ToArray();
+
+            return userInput;
+        }
+
+        private static OwnTuple<string, string> ReturnsFullnameAndAddress(string[] userInput)
+        {
+
+
+            var fullname = userInput[0] + " " + userInput[1];
+            var address = userInput[2];
+
+            var nameAddress = new OwnTuple<string, string>(fullname, address);
+
+            return nameAddress;
+        }
+
+        private static OwnTuple<string, int> ReturnsFirstNameLittersBeer(string[] userInput)
+        {
+            var firstName = userInput[0];
+            var beerLitters = int.Parse(userInput[1]);
+
+            var firstNameBeerLitters = new OwnTuple<string, int>(firstName, beerLitters);
+
+            return firstNameBeerLitters;
+        }
+
+        private static OwnTuple<int, double> ReturnsIntDoubleData(string[] userInput)
+        {
+            var intFifureInput = int.Parse(userInput[0]);
+            var doubleFigureInput = double.Parse(userInput[1]);
+
+            var intDouleFigure = new OwnTuple<int, double>(intFifureInput, doubleFigureInput);
+
+            return intDouleFigure;
+        }
+
+        private static void AddsLineToString<T1, T2>(StringBuilder sb, OwnTuple<T1, T2> tuple)
+        {
+            sb.AppendLine($"{tuple.FirstValue} -> {tuple.SecondValue}");
         }
     }
 }
+

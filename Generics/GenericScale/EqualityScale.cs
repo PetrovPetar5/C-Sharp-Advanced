@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GenericScale
+﻿namespace GenericScale
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
     public class EqualityScale<T>
     {
-        public EqualityScale(T firstElement, T secondElement)
+        public EqualityScale(T left, T right)
         {
-            this.FirstElement = firstElement;
-            this.SecondElement = secondElement;
+            this.Left = left;
+            this.Right = right;
         }
-        public T FirstElement { get; set; }
-        public T SecondElement { get; set; }
+
+        public T Left { get; set; }
+        public T Right { get; set; }
 
         public bool AreEqual()
         {
-            return this.FirstElement.Equals(this.SecondElement);
+            return this.Left.Equals(this.Right);
         }
     }
 }

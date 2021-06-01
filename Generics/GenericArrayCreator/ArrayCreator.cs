@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GenericArrayCreator
+﻿namespace GenericArrayCreator
 {
-    public class ArrayCreator
+    public static class ArrayCreator<T>
     {
-        public static T[] Create<T>(int Length, T item)
+        public static T[] Create(int length, T item)
         {
-            var customArr = new T[Length];
-            for (int i = 0; i < customArr.Length; i++)
+            var collection = new T[length];
+
+            for (int i = 0; i < collection.Length; i++)
             {
-                customArr[i] = item;
+                collection[i] = item;
             }
 
-            return customArr;
+            return collection;
         }
     }
 }

@@ -1,30 +1,29 @@
 ﻿namespace BoxOfT
 {
+    using System;
     using System.Collections.Generic;
     public class Box<T>
     {
-        private Stack<T> elements;
+        private Stack<T> collection;
 
         public Box()
         {
-            elements = new Stack<T>();
-        }
-        public int Count
-        {
-            get
-            {
-                return elements.Count;
-            }
+            this.collection = new Stack<T>();
         }
 
+        public int Count => this.collection.Count;
         public void Add(T element)
         {
-            this.elements.Push(element);
+            this.collection.Push(element);
         }
-
         public T Remove()
         {
-            return this.elements.Pop();
+            if (this.collection.Count == 0)
+            {
+                throw new ArgumentNullException("You cannot remove from an empty collection.");
+            }
+
+            return this.collection.Pop();
         }
     }
 }

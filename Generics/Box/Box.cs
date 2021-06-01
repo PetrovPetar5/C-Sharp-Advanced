@@ -2,8 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-    public class Box<T>
+    public class Box<T> where T : IComparable
     {
         public Box(T value)
         {
@@ -38,6 +37,19 @@
             collection[secondIndex] = temp;
         }
 
+        public static int CountGreaterElements(List<T> collection, T comparator)
+        {
+            var count = 0;
+            foreach (var item in collection)
+            {
+                if (item.CompareTo(comparator) > 0)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
         public override string ToString()
         {
             var result = $"{this.Value.GetType()}: {this.Value}";

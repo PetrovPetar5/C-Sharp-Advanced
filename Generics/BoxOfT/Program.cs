@@ -5,17 +5,13 @@
     {
         static void Main(string[] args)
         {
-            var intBox = new Box<int>();
-            intBox.Add(5002);
-            intBox.Add(5006);
-            intBox.Add(5003);
-
-            Console.WriteLine(intBox.Remove());
-
-            var doubleBox = new Box<double>();
-            doubleBox.Add(2.29);
-            doubleBox.Add(2.29);
-            Console.WriteLine(doubleBox.Remove());
+            Box<string> box = new Box<string>();
+            box.Add("Love is all a person needs");
+            box.Add("need a beer?");
+            box.Add("A lovely portrait on that wall isn it?");
+            Console.WriteLine(box.Remove());
+            box.Add("Shame on you you have eaten all the food left?");
+            Console.WriteLine(box.Remove());
         }
     }
 }

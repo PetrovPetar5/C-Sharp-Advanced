@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace GenericScale
+﻿namespace GenericScale
 {
-    public class StartUp
+    using System;
+   public class StartUp
     {
         static void Main(string[] args)
         {
-            EqualityScale<string> scale = new EqualityScale<string>("Pesho", "Pesho");
-            Console.WriteLine(scale.AreEqual());
+           
         }
     }
 }
