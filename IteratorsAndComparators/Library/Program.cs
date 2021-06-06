@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace IteratorsAndComparators
+﻿namespace IteratorsAndComparators
 {
-    public class Program
+    class StartUp
     {
         static void Main(string[] args)
         {
@@ -11,12 +8,8 @@ namespace IteratorsAndComparators
             Book bookTwo = new Book("The Documents in the Case", 2002, "Dorothy Sayers", "Robert Eustace");
             Book bookThree = new Book("The Documents in the Case", 1930);
 
-            Library library = new Library(bookOne, bookTwo, bookThree);
-
-            foreach (var book in library)
-            {
-                Console.WriteLine(book);
-            }
+            Library libraryOne = new Library();
+            Library libraryTwo = new Library(bookOne, bookTwo, bookThree);
         }
     }
 }
