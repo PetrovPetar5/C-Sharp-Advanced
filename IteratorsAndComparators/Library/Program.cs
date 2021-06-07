@@ -1,5 +1,6 @@
 ﻿namespace IteratorsAndComparators
 {
+    using System;
     class StartUp
     {
         static void Main(string[] args)
@@ -10,6 +11,11 @@
 
             Library libraryOne = new Library();
             Library libraryTwo = new Library(bookOne, bookTwo, bookThree);
+
+            foreach (var item in libraryTwo)
+            {
+                Console.WriteLine(item.Title);
+            }
         }
     }
 }
