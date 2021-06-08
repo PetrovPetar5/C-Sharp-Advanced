@@ -11,10 +11,10 @@
 
             Library libraryOne = new Library();
             Library libraryTwo = new Library(bookOne, bookTwo, bookThree);
-
-            foreach (var item in libraryTwo)
+            
+            foreach (var book in libraryTwo)
             {
-                Console.WriteLine(item.Title);
+                Console.WriteLine(book);
             }
         }
     }

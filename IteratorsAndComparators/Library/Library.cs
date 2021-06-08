@@ -1,5 +1,6 @@
 ﻿namespace IteratorsAndComparators
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     public class Library : IEnumerable<Book>
@@ -9,10 +10,12 @@
         public Library(params Book[] books)
         {
             this.books = books;
+            Array.Sort(this.books, new BookComparator());
         }
 
         public IEnumerator<Book> GetEnumerator()
         {
+
             return new BookEnumerator(this.books);
         }
 

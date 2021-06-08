@@ -11,6 +11,7 @@ namespace IteratorsAndComparators
         private Book[] books;
         public BookEnumerator(Book[] books)
         {
+            this.Reset();
             this.books = books;
         }
         public Book Current => this.books[this.currentIndex];
