@@ -1,52 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace ListyIterator
+﻿namespace ListyIterator
 {
+    using System;
+    using System.Linq;
+
     class Program
     {
         static void Main(string[] args)
         {
+            var endCommand = "END";
+            var inputData = Console.ReadLine()
+                                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                                    .Skip(1)
+                                    .ToArray();
+            var customList = new ListyIterator<string>(inputData);
+
             var command = Console.ReadLine();
-            var inputData = ReturnsInputAsCollection(command);
-            var listyIterator = new ListyIterator<string>(inputData);
-            while ((command = Console.ReadLine()) != "END")
+            while (command != endCommand)
             {
                 try
                 {
                     switch (command)
                     {
+
                         case "HasNext":
-                            Console.WriteLine(listyIterator.HasNext());
+                            Console.WriteLine(customList.HasNext());
                             break;
                         case "Move":
-                            Console.WriteLine(listyIterator.Move());
+                            Console.WriteLine(customList.Move());
                             break;
                         case "Print":
-                            listyIterator.Print();
-                            break;
-                        case "PrintAll":
-                            Console.WriteLine(listyIterator.PrintAll());
+                            customList.Print();
                             break;
                     }
                 }
-                catch (InvalidOperationException em)
+                catch (InvalidOperationException m)
                 {
 
-                    Console.WriteLine(em.Message);
+                    Console.WriteLine(m.Message);
                 }
-            }
-        }
-        private static List<string> ReturnsInputAsCollection(string command)
-        {
-            var commandArgs = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            var inputData = commandArgs.Skip(1).ToList();
-            if (inputData.Count == 0)
-            {
-                throw new InvalidOperationException("Invalid Operation!");
-            }
 
-            return inputData;
+                command = Console.ReadLine();
+            }
         }
     }
 }
