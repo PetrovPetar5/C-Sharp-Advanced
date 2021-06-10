@@ -1,51 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ComparingObjects
+﻿namespace ComparingObjects
 {
-    class Program
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    class StartUp
     {
         static void Main(string[] args)
         {
+            var endCommand = "END";
+            var command = Console.ReadLine();
             var people = new List<Person>();
-            var command = String.Empty;
-            while ((command = Console.ReadLine()) != "END")
+            while (command != endCommand)
             {
-                var commandArgs = command.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                AddsPersonToList(people, commandArgs);
+                var commandArgs = command
+                                  .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                                  .ToArray();
+                var personName = commandArgs[0];
+                var personAge = byte.Parse(commandArgs[1]);
+                var personTown = commandArgs[2];
+                var curPerson = new Person(personName, personAge, personTown);
+                people.Add(curPerson);
+                command = Console.ReadLine();
             }
 
-            var n = int.Parse(Console.ReadLine());
-            var personToCompare = people[n - 1];
-            var matchesCount = 0;
+            var personToCompareIndex = byte.Parse(Console.ReadLine()) - 1;
+            var targetPerson = people[personToCompareIndex];
+            var equalPeopleCount = 1;
+            var totalPeopleCount = people.Count();
             foreach (var person in people)
             {
-                if (person.Equals(personToCompare))
+                if (!person.Equals(targetPerson) && person.CompareTo(targetPerson) == 0)
                 {
-                    matchesCount++;
+                    equalPeopleCount++;
                 }
             }
 
-            var totalPeopleInList = people.Count;
-            var differentToPerson = people.Count - matchesCount;
-            if (matchesCount <= 1)
+            if (equalPeopleCount == 1)
             {
                 Console.WriteLine("No matches");
-
             }
             else
             {
-                Console.WriteLine($"{matchesCount} {differentToPerson} {totalPeopleInList}");
+                Console.WriteLine($"{equalPeopleCount} {totalPeopleCount - equalPeopleCount} {totalPeopleCount}");
             }
-        }
-
-        private static void AddsPersonToList(List<Person> personList, string[] commandArgs)
-        {
-            var name = commandArgs[0];
-            var age = int.Parse(commandArgs[1]);
-            var town = commandArgs[2];
-            Person curPerson = new Person(name, age, town);
-            personList.Add(curPerson);
         }
     }
 }

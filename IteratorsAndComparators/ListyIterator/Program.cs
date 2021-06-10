@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    class Program
+    class StartUp
     {
         static void Main(string[] args)
         {
@@ -13,6 +13,11 @@
                                     .Skip(1)
                                     .ToArray();
             var customList = new ListyIterator<string>(inputData);
+
+            foreach (var item in customList)
+            {
+                Console.WriteLine(item);
+            }
 
             var command = Console.ReadLine();
             while (command != endCommand)
@@ -30,6 +35,9 @@
                             break;
                         case "Print":
                             customList.Print();
+                            break;
+                        case "PrintAll":
+                            Console.WriteLine(customList.PrintAll());
                             break;
                     }
                 }

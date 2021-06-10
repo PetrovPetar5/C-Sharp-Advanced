@@ -1,34 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Froggy
+﻿namespace Froggy
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Text;
     public class Lake : IEnumerable<int>
     {
-        private readonly int[] data;
-        public Lake(params int[] collection)
+        private readonly List<int> stoneNumbers;
+        public Lake(params int[] data)
         {
-            this.data = collection;
+            this.stoneNumbers = new List<int>(data);
         }
 
         public IEnumerator<int> GetEnumerator()
         {
-            for (int i = 0; i < this.data.Length; i += 2)
+            if (this.stoneNumbers.Count == 0)
             {
-                yield return this.data[i];
+                throw new InvalidOperationException("The collection is empty.");
             }
 
-            for (int i = this.data.Length - 1; i >= 0; i--)
+            for (int i = 0; i < this.stoneNumbers.Count; i += 2)
             {
-                if (i % 2 != 0)
-                {
-                    yield return this.data[i];
-                }
+                yield return this.stoneNumbers[i];
+            }
+
+            var stonesEvenPosMaxCount = this.stoneNumbers.Count % 2 == 0 ? this.stoneNumbers.Count - 1 : this.stoneNumbers.Count - 2;
+            for (int i = stonesEvenPosMaxCount; i >= 0; i -= 2)
+            {
+                yield return this.stoneNumbers[i];
             }
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return this.GetEnumerator();
         }
     }
 }

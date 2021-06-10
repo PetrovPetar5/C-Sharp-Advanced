@@ -1,15 +1,18 @@
-﻿using System;
-using System.Linq;
-
-namespace Froggy
+﻿namespace Froggy
 {
-    class Program
+    using System;
+    using System.Linq;
+    class StartUp
     {
         static void Main(string[] args)
         {
-            int[] inputArgs = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            Lake curLake = new Lake(inputArgs);
-            Console.WriteLine(String.Join(", ", curLake));
+            var stoneNumbers = Console.ReadLine()
+                                        .Split(", ")
+                                        .Select(int.Parse)
+                                        .ToArray();
+            var lake = new Lake(stoneNumbers);
+
+            Console.WriteLine(String.Join(", ", lake));
         }
     }
 }
