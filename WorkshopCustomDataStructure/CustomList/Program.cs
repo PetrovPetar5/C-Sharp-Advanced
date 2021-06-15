@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace CustomList
+﻿namespace CustomList
 {
+    using System;
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var ourList = new CustomList<int>();
+            ourList[0] = 1;
+            ourList[1] = 2;
         }
     }
 }
