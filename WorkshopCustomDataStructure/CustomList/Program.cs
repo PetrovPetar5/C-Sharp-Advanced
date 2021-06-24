@@ -1,13 +1,21 @@
 ﻿namespace CustomList
 {
     using System;
+    using System.Diagnostics;
+
     class Program
     {
         static void Main(string[] args)
         {
-            var ourList = new CustomList<int>();
-            ourList[0] = 1;
-            ourList[1] = 2;
+            var ourList = new CustomList<string>();
+            ourList.Add("Doremia");
+            ourList.Add("Doremids");
+            ourList.Add("Doremisda");
+            ourList.Add("Doremi");
+
+            
+            Console.WriteLine(ourList.Find("Kuro"));
+
         }
     }
 }
