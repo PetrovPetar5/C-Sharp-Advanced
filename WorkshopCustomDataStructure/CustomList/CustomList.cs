@@ -1,8 +1,6 @@
 ﻿namespace CustomList
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
     public class CustomList<T>
     {
         const int InitialCapacity = 2;
@@ -35,6 +33,15 @@
             }
         }
 
+        public void Reverse()
+        {
+            for (int i = 0; i < this.Count / 2; i++)
+            {
+                var temp = this.items[i];
+                this.items[i] = this.items[this.Count - 1 - i];
+                this.items[this.Count - 1 - i] = temp;
+            }
+        }
 
         public int Find(T element)
         {
@@ -136,7 +143,7 @@
             this.items = tempArray;
         }
 
-        public void ShiftToRight(int index)
+        private void ShiftToRight(int index)
         {
             for (int i = this.Count - 1; i >= index; i--)
             {
