@@ -1,12 +1,11 @@
-﻿using System;
-
-namespace CustomDoublyLinkedList
+﻿namespace CustomDoublyLinkedList
 {
-    class Program
+    using System;
+    class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }
