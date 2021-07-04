@@ -26,6 +26,24 @@
                 this.head.PreviousNode = newHead;
                 this.head = newHead;
             }
+
+            this.Count++;
+        }
+
+        public void AddLast(T element)
+        {
+            if (this.Count == 0)
+            {
+                this.head = this.tail = new ListNode<T>(element);
+            }
+            else
+            {
+                var newTail = new ListNode<T>(element);
+                newTail.PreviousNode = this.tail;
+                this.tail = newTail;
+            }
+
+            this.Count++;
         }
 
         private class ListNode<T>
