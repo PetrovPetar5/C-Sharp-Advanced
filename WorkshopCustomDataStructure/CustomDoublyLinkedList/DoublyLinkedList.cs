@@ -40,10 +40,16 @@
             {
                 var newTail = new ListNode<T>(element);
                 newTail.PreviousNode = this.tail;
+                this.tail.NextNode = newTail;
                 this.tail = newTail;
             }
 
             this.Count++;
+        }
+
+        public void RemoveFirst()
+        {
+
         }
 
         private class ListNode<T>
